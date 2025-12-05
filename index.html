@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="overflow-x-hidden">
 <head>
     <meta charset="UTF-8">
     <!-- Updated viewport to disable zooming -->
@@ -22,6 +22,8 @@
             /* Disables double-tap to zoom on mobile */
             touch-action: manipulation; 
             -webkit-tap-highlight-color: transparent;
+            overflow-x: hidden; /* Prevents horizontal scroll */
+            width: 100%;
         }
         
         /* Remove arrows from number inputs */
@@ -39,19 +41,19 @@
         }
     </style>
 </head>
-<body class="min-h-screen text-slate-800 p-2 sm:p-4">
+<body class="min-h-screen text-slate-800 p-2 sm:p-4 overflow-x-hidden w-full">
 
-    <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 w-full">
         
         <!-- LEFT COLUMN - INPUTS -->
-        <div class="space-y-4 sm:space-y-6">
+        <div class="space-y-4 sm:space-y-6 w-full max-w-full">
             
             <!-- Header Card -->
-            <div class="bg-white rounded-2xl shadow-sm p-4 sm:p-6">
+            <div class="bg-white rounded-2xl shadow-sm p-4 sm:p-6 w-full">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
                     <div class="flex items-center gap-3">
                         <!-- Custom Juice Logo -->
-                        <div class="bg-orange-500 p-2.5 rounded-xl text-white shadow-md transform -rotate-6">
+                        <div class="bg-orange-500 p-2.5 rounded-xl text-white shadow-md transform -rotate-6 shrink-0">
                             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M7 21h10a2 2 0 0 0 2-2V9H5v10a2 2 0 0 0 2 2z"/>
                                 <path d="M5 9h14"/>
@@ -67,17 +69,17 @@
                         </div>
                     </div>
                     
-                    <div class="flex items-center gap-2 bg-gray-50 px-3 py-2 rounded-lg border border-gray-100 self-start sm:self-auto">
+                    <div class="flex items-center gap-2 bg-gray-50 px-3 py-2 rounded-lg border border-gray-100 self-start sm:self-auto max-w-full overflow-hidden">
                         <!-- Developer Icon -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-500"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-                        <span class="text-xs sm:text-sm font-bold text-gray-700">Md Hakim Mia</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-500 shrink-0"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                        <span class="text-xs sm:text-sm font-bold text-gray-700 truncate">Md Hakim Mia</span>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
+                    <div class="w-full">
                         <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Customer Name</label>
-                        <div class="relative">
+                        <div class="relative w-full">
                             <div class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                             </div>
@@ -85,9 +87,9 @@
                                 class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none transition-all text-sm font-medium">
                         </div>
                     </div>
-                    <div>
+                    <div class="w-full">
                         <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Delivery Date</label>
-                        <div class="relative">
+                        <div class="relative w-full">
                             <div class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                             </div>
@@ -99,7 +101,7 @@
             </div>
 
             <!-- Small Juices Card -->
-            <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
+            <div class="bg-white rounded-2xl shadow-sm overflow-hidden w-full">
                 <div class="bg-orange-50 px-4 sm:px-6 py-3 border-b border-orange-100 flex justify-between items-center">
                     <h2 class="font-bold text-orange-800 text-sm sm:text-base">Small Juice</h2>
                     <span class="text-xs bg-white text-orange-600 px-2 py-1 rounded-full font-bold">200ml</span>
@@ -110,7 +112,7 @@
             </div>
 
             <!-- Large Juices Card -->
-            <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
+            <div class="bg-white rounded-2xl shadow-sm overflow-hidden w-full">
                 <div class="bg-green-50 px-4 sm:px-6 py-3 border-b border-green-100 flex justify-between items-center">
                     <h2 class="font-bold text-green-800 text-sm sm:text-base">Large Juices</h2>
                     <span class="text-xs bg-white text-green-600 px-2 py-1 rounded-full font-bold">300ml</span>
@@ -121,7 +123,7 @@
             </div>
 
             <!-- Cheese Card -->
-            <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
+            <div class="bg-white rounded-2xl shadow-sm overflow-hidden w-full">
                 <div class="bg-yellow-50 px-4 sm:px-6 py-3 border-b border-yellow-100">
                     <h2 class="font-bold text-yellow-800 text-sm sm:text-base">Other Items</h2>
                 </div>
@@ -132,7 +134,7 @@
         </div>
 
         <!-- RIGHT COLUMN - PREVIEW -->
-        <div class="lg:sticky lg:top-4 h-fit space-y-4">
+        <div class="lg:sticky lg:top-4 h-fit space-y-4 w-full">
             <div class="bg-gray-800 text-white p-4 rounded-xl flex items-center justify-between shadow-lg">
                 <span class="font-semibold flex items-center gap-2 text-sm sm:text-base">
                     Preview

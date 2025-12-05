@@ -128,6 +128,8 @@
                                 <input type="date" id="deliveryDate" oninput="updatePreview()"
                                     class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none transition-all text-sm font-medium appearance-none min-w-0">
                             </div>
+                            <!-- Day Name Display (Added here) -->
+                            <div id="dayOfWeekDisplay" class="text-orange-600 text-sm font-medium mt-1.5 ml-1"></div>
                         </div>
                     </div>
                 </div>
@@ -355,11 +357,21 @@
         // Main Logic: Generate Text
         window.updatePreview = function() {
             const name = document.getElementById('customerName').value;
-            const date = document.getElementById('deliveryDate').value;
+            const dateVal = document.getElementById('deliveryDate').value;
+            
+            // Update day label on form
+            const dayLabel = document.getElementById('dayOfWeekDisplay');
+            if(dayLabel && dateVal) {
+                 const [y, m, d] = dateVal.split('-');
+                 const dateObj = new Date(y, m - 1, d);
+                 dayLabel.textContent = dateObj.toLocaleDateString('en-US', { weekday: 'long' });
+            } else if (dayLabel) {
+                dayLabel.textContent = '';
+            }
             
             const text = `*Juice Order  For ${name}*
 
-Delivered on *${formatDate(date)}*
+Delivered on *${formatDate(dateVal)}*
 
 
 *Small Juice*

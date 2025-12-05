@@ -216,8 +216,47 @@
             ]
         };
 
+        // Initialize Form with Linked Next IDs
+        function init() {
+            // Set default date to tomorrow
+            document.getElementById('deliveryDate').value = getNextDayDate();
+
+            // Create flat list of items to determine order
+            const allItems = [...initialData.small, ...initialData.large, ...initialData.other];
+
+            // Render Small
+            document.getElementById('smallJuiceContainer').innerHTML = initialData.small.map((item, index) => {
+                const nextId = getNextId(item.id, allItems);
+                return createItemRow(item, nextId);
+            }).join('');
+
+            // Render Large
+            document.getElementById('largeJuiceContainer').innerHTML = initialData.large.map((item, index) => {
+                const nextId = getNextId(item.id, allItems);
+                return createItemRow(item, nextId);
+            }).join('');
+
+            // Render Other
+            document.getElementById('otherContainer').innerHTML = initialData.other.map((item, index) => {
+                const nextId = getNextId(item.id, allItems);
+                return createItemRow(item, nextId);
+            }).join('');
+
+            updatePreview();
+        }
+
+        // Helper to find next ID
+        function getNextId(currentId, allItems) {
+            const index = allItems.findIndex(i => i.id === currentId);
+            if (index >= 0 && index < allItems.length - 1) {
+                return allItems[index + 1].id;
+            }
+            return null;
+        }
+
         // Render Item Row HTML
-        function createItemRow(item) {
+        function createItemRow(item, nextId) {
+            // We pass nextId to handleInput
             return `
             <div class="flex items-center justify-between py-2 border-b border-gray-100 last:border-0">
                 <div class="flex items-center gap-3">
@@ -233,7 +272,7 @@
                         type="number" 
                         id="${item.id}" 
                         value="${item.value}" 
-                        oninput="updatePreview()" 
+                        oninput="handleInput(event, '${nextId || ''}')" 
                         onfocus="this.select()"
                         inputmode="numeric" 
                         pattern="[0-9]*"
@@ -248,15 +287,25 @@
             `;
         }
 
-        // Initialize Form
-        function init() {
-            // Set default date to tomorrow
-            document.getElementById('deliveryDate').value = getNextDayDate();
-
-            document.getElementById('smallJuiceContainer').innerHTML = initialData.small.map(createItemRow).join('');
-            document.getElementById('largeJuiceContainer').innerHTML = initialData.large.map(createItemRow).join('');
-            document.getElementById('otherContainer').innerHTML = initialData.other.map(createItemRow).join('');
+        // Handle direct input: 2 digit limit & auto-advance
+        window.handleInput = function(e, nextId) {
+            const input = e.target;
+            
+            // Limit to 2 digits max
+            if (input.value.length > 2) {
+                input.value = input.value.slice(0, 2);
+            }
+            
             updatePreview();
+            
+            // Auto-advance if 2 digits entered
+            if (input.value.length >= 2 && nextId) {
+                const nextEl = document.getElementById(nextId);
+                if (nextEl) {
+                    nextEl.focus();
+                    nextEl.select(); 
+                }
+            }
         }
 
         function getNextDayDate() {
@@ -273,6 +322,8 @@
             const input = document.getElementById(id);
             let val = parseInt(input.value) || 0;
             val = Math.max(0, val + change);
+            // Limit button adjustment to 2 digits (max 99)
+            if (val > 99) val = 99;
             input.value = val;
             updatePreview();
         }

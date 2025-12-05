@@ -43,15 +43,30 @@
         .emoji-font {
             font-family: 'Noto Color Emoji', sans-serif;
         }
+        
+        /* Custom scrollbar for preview area */
+        textarea::-webkit-scrollbar {
+            width: 8px;
+        }
+        textarea::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        textarea::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        textarea::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
     </style>
 </head>
-<body class="min-h-screen text-slate-800 p-3 sm:p-4">
+<body class="min-h-screen text-slate-800 p-3 sm:p-4 box-border">
 
     <!-- Added max-w-[100vw] and overflow-hidden to wrapper to prevent any spillover -->
     <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 w-full overflow-hidden">
         
         <!-- LEFT COLUMN - INPUTS -->
-        <div class="space-y-4 sm:space-y-6 w-full">
+        <div class="space-y-4 sm:space-y-6 w-full min-w-0">
             
             <!-- Header Card -->
             <div class="bg-white rounded-2xl shadow-sm p-4 sm:p-6 w-full">
@@ -82,25 +97,26 @@
                 </div>
 
                 <!-- UPDATED GRID: Stacks on mobile/tablet, side-by-side only on large screens -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                    <div class="w-full">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 w-full">
+                    <div class="w-full min-w-0">
                         <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Customer Name</label>
                         <div class="relative w-full">
-                            <div class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+                            <div class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                             </div>
                             <input type="text" id="customerName" value="Hudaithi-KJ04" oninput="updatePreview()"
-                                class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none transition-all text-sm font-medium">
+                                class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none transition-all text-sm font-medium box-border max-w-full">
                         </div>
                     </div>
-                    <div class="w-full">
+                    <div class="w-full min-w-0">
                         <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Delivery Date</label>
                         <div class="relative w-full">
-                            <div class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+                            <div class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                             </div>
+                            <!-- Added max-w-full and w-full to strict constrain -->
                             <input type="date" id="deliveryDate" oninput="updatePreview()"
-                                class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none transition-all text-sm font-medium">
+                                class="w-full max-w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none transition-all text-sm font-medium box-border">
                         </div>
                     </div>
                 </div>
